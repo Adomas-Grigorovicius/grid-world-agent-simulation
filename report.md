@@ -1,4 +1,4 @@
-~# Grid World Agent Simulation
+# Grid World Agent Simulation
 
 ## 1. Introduction
 
