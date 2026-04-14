@@ -6,8 +6,8 @@ class Grid:
     def __init__(self, filepath):
         self.__filepath = filepath 
         self.__grid = []
-        self.__goal = none
-        self.__start = none 
+        self.__goal = None
+        self.__start = None 
         self.__rows = 0
         self.__cols = 0
         self.__load(filepath)
@@ -31,15 +31,19 @@ class Grid:
     def get_cell(self, x, y):
         return self.__grid[y][x]
     
+    @property
     def get_start(self):
         return self.__start
 
+    @property
     def get_goal(self):
         return self.__goal
 
+    @property
     def get_rows(self):
         return self.__rows
 
+    @property
     def get_cols(self):
         return self.__cols
     
