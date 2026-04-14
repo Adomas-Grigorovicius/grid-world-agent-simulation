@@ -1,4 +1,4 @@
-# Grid World Agent Simulation
+~# Grid World Agent Simulation
 
 ## 1. Introduction
 
@@ -58,3 +58,7 @@ Factory design pattern and composition between the Grid and Cell classes.
 ---
 
 ## 4. Resources
+
+https://www.geeksforgeeks.org
+https://www.w3schools.com
+https://docs.python.org/3/
