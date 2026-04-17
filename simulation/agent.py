@@ -5,10 +5,35 @@ import simulation.grid import Grid
 
 class BaseAgent():
     def __init__(self, grid: Grid):
-        
+        self._grid = grid
+        self._x = grid.get_start().get_x()
+        self._y = grid.get_start().get_y()
+        self._steps = 0
+    
+    def get_x(self):
+        return self._x
+    
+    def get_y(self):
+        return self._y
+    
+    def get_steps(self):
+        return self._steps
+    
+    def has_reached_goal(self):
+        return self.grid.get_cell(self._x, self._y).is_goal()\
+    
+    def move(self):
+        pass
 
-        
-
+    def _get_valid_neighbours(self):
+        directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+        neighbours = []
+        for dx, dy in directions:
+            nx, ny = self._x + dx, self._y + dy
+            if self._grid.is_valid_move(nx, ny):
+                neighbours.append((nx, ny))
+        return neighbours
+    
 class RandomAgent(BaseAgent):
     def move(self):
 
@@ -17,5 +42,3 @@ class RandomAgent(BaseAgent):
 
 class GreedyAgent(BaseAgent):
     def move(self):
-
-
