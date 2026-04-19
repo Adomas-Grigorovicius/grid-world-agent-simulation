@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import random
-import simulation.grid import Grid
+from simulation.grid import Grid
 
 
 class BaseAgent():
@@ -36,9 +36,11 @@ class BaseAgent():
     
 class RandomAgent(BaseAgent):
     def move(self):
-
-
-
-
+        neighbours = self._get_valid_neighbours()
+        if neighbours:
+            self._x, self._y = random.choice(neighbours)
+            self._steps += 1
+         
 class GreedyAgent(BaseAgent):
     def move(self):
+        
