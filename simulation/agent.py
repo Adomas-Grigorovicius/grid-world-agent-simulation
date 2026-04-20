@@ -3,7 +3,7 @@ import random
 from simulation.grid import Grid
 
 
-class BaseAgent():
+class BaseAgent(ABC):
     def __init__(self, grid: Grid):
         self._grid = grid
         self._x = grid.get_start().get_x()
