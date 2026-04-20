@@ -30,16 +30,52 @@ Factory design pattern and composition between the Grid and Cell classes.
 
 #### Encapsulation
 
-
 #### Abstraction
 
 #### Inheritance
 
+Inheritance allows a class to reuse attributes and methods from a parent
+class. Both `RandomAgent` and `GreedyAgent` inherit from `BaseAgent`,
+meaning they automatically get attributes like `_x`, `_y`, `_steps` and
+methods like `has_reached_goal()` and `_get_valid_neighbours()` without
+rewriting them:
+
+```python
+class RandomAgent(BaseAgent):
+    def move(self):
+        neighbours = self._get_valid_neighbours()
+        if neighbours:
+            self._x, self._y = random.choice(neighbours)
+            self._steps += 1
+```
+
 #### Polymorphism
+
+Polymorphism means different classes can share the same method name but
+behave differently. Both `RandomAgent` and `GreedyAgent` have a `move()`
+method, but their logic is completely different:
+
+- `RandomAgent.move()` picks a random valid neighbour
+- `GreedyAgent.move()` picks the neighbour closest to the goal
+
+This means the simulation can call `agent.move()` without needing to know
+which type of agent it is — the correct behaviour happens automatically.
 
 ### Design Pattern
 
 ### Composition and Aggregation
+
+Composition is when one class is made up of objects of another class.
+The `Grid` class is composed of `Cell` objects — it creates and owns them,
+and they cannot exist independently of the grid:
+
+```python
+cell = Cell(x, y, cell_type.strip())
+grid_row.append(cell)
+```
+
+The entire grid world is built from individual `Cell` objects, each knowing
+their own position and type.
 
 ### File I/O
 
