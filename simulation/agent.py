@@ -43,4 +43,13 @@ class RandomAgent(BaseAgent):
          
 class GreedyAgent(BaseAgent):
     def move(self):
+        neighbours = self._get_valid_neighbours()
+        if neighbours:
+            goal_x = self._grid.get_goal().get_x()
+            goal_y = self._grid.get_goal().get_y()
+            self._x, self._y = min(
+                neighbours,
+                key=lambda pos: abs(pos[0] - goal_x) + abs(pos[1] - goal_y)
+            )
+            self._steps += 1
         
