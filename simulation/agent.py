@@ -6,22 +6,26 @@ from simulation.grid import Grid
 class BaseAgent(ABC):
     def __init__(self, grid: Grid):
         self._grid = grid
-        self._x = grid.get_start().get_x()
-        self._y = grid.get_start().get_y()
+        self._x = grid.start_cell.x
+        self._y = grid.start_cell.y
         self._steps = 0
     
+    @property
     def get_x(self):
         return self._x
     
+    @property
     def get_y(self):
         return self._y
     
+    @property
     def get_steps(self):
         return self._steps
     
     def has_reached_goal(self):
-        return self.grid.get_cell(self._x, self._y).is_goal()\
+        return self._grid.get_cell(self._x, self._y).is_goal()\
     
+    @abstractmethod
     def move(self):
         pass
 
