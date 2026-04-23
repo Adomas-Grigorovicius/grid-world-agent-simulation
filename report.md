@@ -30,7 +30,54 @@ Factory design pattern and composition between the Grid and Cell classes.
 
 #### Encapsulation
 
+Encapsulation is the principle of hiding an object's internal data and only
+exposing it through controlled methods (getters and setters). This prevents
+outside code from directly modifying an object's state in unexpected ways.
+
+In this project, the Cell class demonstrates Strict Encapsulation by using double underscores (__) to make attributes private. This triggers Python’s name mangling, making the attributes inaccessible from outside the class:
+
+```python
+def __init__(self, x: int, y: int, cell_type: str):
+    self.__x = x
+    self.__y = y
+    self.__cell_type = cell_type
+```
+I implemented Pythonic Getters and Setters using the @property decorator. This allows the attributes to be accessed like variables while maintaining control over how they are handled. For example, the cell_type setter includes validation logic to ensure the grid only contains valid cell characters:
+
+```python
+@property
+    def get_type(self):
+        return self.__cell_type
+    
+    @cell_type.setter
+    def set_type(self, cell_type):
+        if cell_type not in self.VALID_TYPES:
+            raise ValueError(f"Invalid cell type: {cell_type}")
+        self.__cell_type = cell_type
+```
+
 #### Abstraction
+
+Abstraction means hiding complex implementation details and only exposing
+what is necessary for the outside world to interact with. It allows you to
+define a common interface without specifying exactly how it works internally.
+
+In this project, abstraction is implemented through the `BaseAgent` abstract
+class. It inherits from Python's built-in `ABC` (Abstract Base Class) and
+defines what every agent must be able to do, without specifying how:
+
+```python
+from abc import ABC, abstractmethod
+class BaseAgent(ABC):
+
+    @abstractmethod
+    def move(self):
+        pass
+```
+The `@abstractmethod` decorator on `move()` enforces that any class
+inheriting from `BaseAgent` must implement its own version of `move()`.
+If a subclass forgets to do this, Python will immediately throw an error
+when trying to create an instance of it.
 
 #### Inheritance
 
