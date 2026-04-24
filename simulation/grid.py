@@ -20,9 +20,9 @@ class Grid:
                 for x, cell_type in enumerate(row):
                     cell = Cell(x, y, cell_type.strip())
                     grid_row.append(cell)
-                    if cell.get_type() == "S":
+                    if cell.cell_type() == "S":
                         self.__start = cell
-                    elif cell.get_type() == "G":
+                    elif cell.cell_type() == "G":
                         self.__goal = cell
                 self.__grid.append(grid_row)
             self.__rows = len(self.__grid)
@@ -32,19 +32,19 @@ class Grid:
         return self.__grid[y][x]
     
     @property
-    def get_start(self):
+    def start(self):
         return self.__start
 
     @property
-    def get_goal(self):
+    def goal(self):
         return self.__goal
 
     @property
-    def get_rows(self):
+    def rows(self):
         return self.__rows
 
     @property
-    def get_cols(self):
+    def cols(self):
         return self.__cols
     
     def is_valid_move(self, x, y):
@@ -59,7 +59,7 @@ class Grid:
                 if agent_x == x and agent_y == y:
                     row_str += "A "
                 else:
-                    row_str += self.__grid[y][x].get_type() + " "
+                    row_str += self.__grid[y][x].cell_type() + " "
             print(row_str)
         print()
 
