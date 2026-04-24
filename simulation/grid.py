@@ -20,9 +20,9 @@ class Grid:
                 for x, cell_type in enumerate(row):
                     cell = Cell(x, y, cell_type.strip())
                     grid_row.append(cell)
-                    if cell.cell_type() == "S":
+                    if cell.cell_type == "S":
                         self.__start = cell
-                    elif cell.cell_type() == "G":
+                    elif cell.cell_type == "G":
                         self.__goal = cell
                 self.__grid.append(grid_row)
             self.__rows = len(self.__grid)
