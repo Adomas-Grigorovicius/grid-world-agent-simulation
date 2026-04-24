@@ -6,8 +6,8 @@ from simulation.grid import Grid
 class BaseAgent(ABC):
     def __init__(self, grid: Grid):
         self._grid = grid
-        self._x = grid.start.x()
-        self._y = grid.start.y()
+        self._x = grid.start.x
+        self._y = grid.start.y
         self._steps = 0
     
     @property
@@ -49,8 +49,8 @@ class GreedyAgent(BaseAgent):
     def move(self):
         neighbours = self._get_valid_neighbours()
         if neighbours:
-            goal_x = self._grid.goal.x()
-            goal_y = self._grid.goal.y()
+            goal_x = self._grid.goal.x
+            goal_y = self._grid.goal.y
             self._x, self._y = min(
                 neighbours,
                 key=lambda pos: abs(pos[0] - goal_x) + abs(pos[1] - goal_y)
