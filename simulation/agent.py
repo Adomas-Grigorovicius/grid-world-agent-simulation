@@ -6,8 +6,8 @@ from simulation.grid import Grid
 class BaseAgent(ABC):
     def __init__(self, grid: Grid):
         self._grid = grid
-        self._x = grid.start_cell.x
-        self._y = grid.start_cell.y
+        self._x = grid.get_start().get_x()
+        self._y = grid.get_start().get_y()
         self._steps = 0
     
     @property
