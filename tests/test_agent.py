@@ -88,3 +88,16 @@ class TestAgents(unittest.TestCase):
                 break
             self.greedy_agent.move()
         self.assertTrue(self.greedy_agent.has_reached_goal())
+
+class TestFileManager(unittest.TestCase):
+    """Tests for the FileManager Singleton."""
+
+    def test_singleton(self):
+        """Test that FileManager is a Singleton."""
+        fm1 = FileManager()
+        fm2 = FileManager()
+        self.assertIs(fm1, fm2)
+
+
+if __name__ == "__main__":
+    unittest.main()
