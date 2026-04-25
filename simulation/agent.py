@@ -11,15 +11,15 @@ class BaseAgent(ABC):
         self._steps = 0
     
     @property
-    def get_x(self):
+    def x(self):
         return self._x
     
     @property
-    def get_y(self):
+    def y(self):
         return self._y
     
     @property
-    def get_steps(self):
+    def steps(self):
         return self._steps
     
     def has_reached_goal(self):
