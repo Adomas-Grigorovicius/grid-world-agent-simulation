@@ -248,7 +248,102 @@ their own position and type.
 
 ### File I/O
 
+This project uses CSV files for both reading and writing data. The `csv`
+module built into Python is used throughout.
+
+#### Reading - Loading the Grid
+
+The grid world is loaded from `data/world.csv` when the simulation starts.
+The `Grid` class reads the file row by row and converts each value into a
+`Cell` object:
+
+```python
+def __load(self, filepath):
+    with open(filepath, newline="") as f:
+        reader = csv.reader(f)
+        for y, row in enumerate(reader):
+            grid_row = []
+            for x, cell_type in enumerate(row):
+                cell = Cell(x, y, cell_type.strip())
+                grid_row.append(cell)
+```
+
+The `world.csv` file defines the layout of the grid world using these
+symbols:
+
+| Symbol | Meaning |
+|--------|---------|
+| S | Start position |
+| G | Goal position |
+| W | Wall |
+| E | Empty cell |
+
+#### Writing - Saving Results
+
+After each simulation run, the result is saved to `data/results.csv` using
+the `FileManager` class. The file is opened in append mode (`"a"`) so
+previous results are never overwritten:
+
+```python
+def save_result(self, agent_type: str, steps: int, filepath: str = "data/results.csv"):
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    row = [timestamp, agent_type, steps]
+    with open(filepath, "a", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(row)
+```
+
+Each row in `results.csv` contains the timestamp, agent type, and number
+of steps taken. For example:
+
+2026-04-25 15:48:17,random,56
+
 ### Testing
+
+Unit tests are written using Python's built-in `unittest` framework and
+are located in `tests/test_agent.py`. The tests cover the core functionality
+of all major classes.
+
+To run the tests:
+
+```bash
+python -m unittest tests/test_agent.py
+```
+
+#### TestCell
+
+Tests for the `Cell` class verify that:
+- Cell types are loaded correctly from the CSV file
+- Empty cells are correctly identified as walkable
+- Wall cells are correctly identified as not walkable
+- The goal cell is correctly identified
+- Setting an invalid cell type raises a `ValueError`
+
+#### TestGrid
+
+Tests for the `Grid` class verify that:
+- The start and goal positions are loaded correctly
+- The grid dimensions are correct (5x5)
+- Valid moves are correctly identified
+- Moving into a wall is correctly rejected
+- Moving outside the grid boundaries is correctly rejected
+
+#### TestAgents
+
+Tests for `RandomAgent` and `GreedyAgent` verify that:
+- Agents start at the correct start position
+- Agents start with 0 steps
+- Agents correctly increment steps after each move
+- Agents have not reached the goal at the start
+- The `GreedyAgent` always reaches the goal within 100 steps
+
+#### TestFileManager
+
+Tests for the `FileManager` class verify that:
+- The Singleton pattern works correctly - two instances of `FileManager`
+are always the exact same object
+
+All 18 tests pass successfully.
 
 ---
 
