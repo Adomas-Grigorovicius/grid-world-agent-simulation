@@ -59,7 +59,7 @@ class Grid:
                 if agent_x == x and agent_y == y:
                     row_str += "A "
                 else:
-                    row_str += self.__grid[y][x].cell_type() + " "
+                    row_str += self.__grid[y][x].cell_type + " "
             print(row_str)
         print()
 
