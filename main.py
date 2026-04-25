@@ -20,11 +20,11 @@ def run_simulation(agent_type: str):
     print(f"\nStarting simulation with {agent_type.capitalize()}Agent")
     print(f"Goal: ({grid.goal.x}, {grid.goal.y})\n")
 
-    grid.display(agent.x, agent.y)
+    grid.display(agent._x, agent._y)
 
     while not agent.has_reached_goal():
         agent.move()
-        grid.display(agent.x, agent.y)
+        grid.display(agent._x, agent._y)
 
     print(f"Goal reached in {agent.steps} steps!")
     file_manager.save_result(agent_type, agent.steps)
