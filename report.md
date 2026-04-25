@@ -20,7 +20,63 @@ Factory design pattern and composition between the Grid and Cell classes.
 
 ### How to run the program?
 
+
+Make sure you have Python installed (version 3.8 or higher). To check, run:
+
+```bash
+python --version
+```
+
+Clone the repository from GitHub:
+
+```bash
+git clone https://github.com/Adomas-Grigorovicius/grid-world-agent-simulation
+```
+
+Navigate into the project folder:
+
+```bash
+cd grid-world-agent-simulation
+```
+
+Run the program from the root of the project:
+
+```bash
+python main.py
+```
+
+Make sure you always run `main.py` from the root folder, not from inside
+any of the subfolders, otherwise the imports will not work correctly.
+
+---
+
 ### How to use the program?
+
+When the program starts, you will see the following menu:
+
+=== Grid World Agent Simulation ===
+Select agent type:
+1. Random Agent
+2. Greedy Agent
+
+Enter 1 or 2:
+
+Enter `1` to run the **Random Agent**, which moves to a random valid
+neighbouring cell each step, or `2` to run the **Greedy Agent**, which
+always moves toward the cell closest to the goal.
+
+The grid will be printed to the console at each step of the simulation,
+showing the current state of the world:
+
+- `S` — Start position
+- `G` — Goal position
+- `W` — Wall (not walkable)
+- `E` — Empty cell (walkable)
+- `A` — Current agent position
+
+The simulation ends automatically when the agent reaches the goal. The
+number of steps taken is displayed and the result is saved to
+`data/results.csv`. All previous results are then printed to the console.
 
 ---
 
@@ -109,6 +165,72 @@ This means the simulation can call `agent.move()` without needing to know
 which type of agent it is — the correct behaviour happens automatically.
 
 ### Design Pattern
+
+
+This project implements two design patterns: the **Singleton Pattern** in
+`FileManager` and the **Factory Pattern** in `main.py`.
+
+---
+
+#### Singleton Pattern
+
+The Singleton Pattern ensures that only one instance of a class can ever
+exist. This is implemented in the `FileManager` class using Python's
+`__new__` method:
+
+```python
+class FileManager:
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+```
+
+Every time `FileManager()` is called, Python checks if an instance already
+exists. If it does, it returns the existing one instead of creating a new one.
+This can be verified like so:
+
+```python
+fm1 = FileManager()
+fm2 = FileManager()
+fm1 is fm2  # True — they are the exact same object
+```
+
+The Singleton Pattern is suitable here because there should only ever be one
+central point responsible for reading and writing simulation results. Having
+multiple `FileManager` instances could cause conflicts when writing to the
+same file simultaneously.
+
+---
+
+#### Factory Pattern
+
+The Factory Pattern provides a way to create objects without specifying the
+exact class directly. In `main.py`, the `agent_factory()` function takes a
+string input and returns the correct agent object:
+
+```python
+def agent_factory(agent_type: str, grid: Grid):
+    agents = {
+        "random": RandomAgent,
+        "greedy": GreedyAgent
+    }
+    if agent_type not in agents:
+        raise ValueError(f"Unknown agent type: {agent_type}")
+    return agents[agent_type](grid)
+```
+
+Instead of the simulation directly creating `RandomAgent(grid)` or
+`GreedyAgent(grid)`, it simply calls `agent_factory("random", grid)` and
+gets back the correct agent. This makes it easy to add new agent types in
+the future - you only need to add a new entry to the `agents` dictionary
+without changing any other code.
+
+The Factory Pattern was chosen here because the type of agent needed is
+determined at runtime based on user input, making a factory function a
+natural and flexible solution.
 
 ### Composition and Aggregation
 
