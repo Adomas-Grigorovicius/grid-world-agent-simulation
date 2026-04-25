@@ -26,8 +26,8 @@ def run_simulation(agent_type: str):
         agent.move()
         grid.display(agent._x, agent._y)
 
-    print(f"Goal reached in {agent.steps} steps!")
-    file_manager.save_result(agent_type, agent.steps)
+    print(f"Goal reached in {agent._steps} steps!")
+    file_manager.save_result(agent_type, agent._steps)
 
 def main():
     print("=== Grid World Agent Simulation ===")
