@@ -57,3 +57,34 @@ class TestGrid(unittest.TestCase):
         self.assertFalse(self.grid.is_valid_move(-1, 0))
         self.assertFalse(self.grid.is_valid_move(0, -1))
         self.assertFalse(self.grid.is_valid_move(10, 0))
+
+class TestAgents(unittest.TestCase):
+    def setUp(self):
+        self.grid = Grid("data/world.csv")
+        self.random_agent = RandomAgent(self.grid)
+        self.greedy_agent = GreedyAgent(self.grid)
+
+    def test_agent_starts_at_start(self):
+        self.assertEqual(self.random_agent.x, self.grid.start.x)
+        self.assertEqual(self.random_agent.y, self.grid.start.y)
+
+    def test_agent_initial_steps(self):
+        self.assertEqual(self.random_agent.steps, 0)
+
+    def test_agent_moves(self):
+        self.random_agent.move()
+        self.assertEqual(self.random_agent.steps, 1)
+
+    def test_agent_has_not_reached_goal_at_start(self):
+        self.assertFalse(self.random_agent.has_reached_goal())
+
+    def test_greedy_agent_moves(self):
+        self.greedy_agent.move()
+        self.assertEqual(self.greedy_agent.steps, 1)
+
+    def test_greedy_reaches_goal(self):
+        for _ in range(100):
+            if self.greedy_agent.has_reached_goal():
+                break
+            self.greedy_agent.move()
+        self.assertTrue(self.greedy_agent.has_reached_goal())
