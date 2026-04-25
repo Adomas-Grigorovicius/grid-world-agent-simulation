@@ -29,3 +29,31 @@ class TestCell(unittest.TestCase):
         cell = self.grid.get_cell(0, 0)
         with self.assertRaises(ValueError):
             cell.cell_type = "X"
+
+class TestGrid(unittest.TestCase):
+
+    def setUp(self):
+        self.grid = Grid("data/world.csv")
+
+    def test_grid_loads_start(self):
+        self.assertIsNotNone(self.grid.start)
+        self.assertEqual(self.grid.start.cell_type, "S")
+
+    def test_grid_loads_goal(self):
+        self.assertIsNotNone(self.grid.goal)
+        self.assertEqual(self.grid.goal.cell_type, "G")
+
+    def test_grid_dimensions(self):
+        self.assertEqual(self.grid.rows, 5)
+        self.assertEqual(self.grid.cols, 5)
+
+    def test_valid_move(self):
+        self.assertTrue(self.grid.is_valid_move(1, 0))
+
+    def test_invalid_move_wall(self):
+        self.assertFalse(self.grid.is_valid_move(3, 0))
+
+    def test_invalid_move_out_of_bounds(self):
+        self.assertFalse(self.grid.is_valid_move(-1, 0))
+        self.assertFalse(self.grid.is_valid_move(0, -1))
+        self.assertFalse(self.grid.is_valid_move(10, 0))
