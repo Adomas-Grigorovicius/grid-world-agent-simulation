@@ -351,9 +351,53 @@ All 18 tests pass successfully.
 
 ### Results
 
+- The simulation was successfully implemented with two agent types:
+  `RandomAgent` and `GreedyAgent`. Both agents are able to navigate the
+  grid world and reach the goal, demonstrating the core functionality of
+  the program.
+
+- All 4 OOP pillars were implemented and demonstrated across the project:
+  encapsulation in `Cell` and `Grid`, abstraction and inheritance in
+  `BaseAgent`, and polymorphism through the different `move()` behaviours
+  of `RandomAgent` and `GreedyAgent`.
+
+- The Singleton and Factory design patterns were successfully applied.
+  `FileManager` ensures only one instance handles file operations, and
+  `agent_factory()` cleanly handles agent creation based on user input.
+
+- All 18 unit tests pass successfully, covering the core functionality of
+  `Cell`, `Grid`, `RandomAgent`, `GreedyAgent` and `FileManager`.
+
+- One challenge faced during implementation was transitioning from
+  explicit getter methods like `get_x()` to Python `@property` decorators,
+  which required updating all references across multiple files consistently.
+
+---
+
 ### Conclusions
 
+This project successfully demonstrates the application of Object-Oriented
+Programming principles in Python through a Grid World Agent Simulation.
+The program implements all 4 OOP pillars, two design patterns, composition
+between `Grid` and `Cell`, file reading and writing, and a full unit test
+suite.
+
+The result is a working simulation where an agent navigates a grid world
+loaded from a CSV file, with results saved automatically after each run.
+The `GreedyAgent` consistently reaches the goal in fewer steps than the
+`RandomAgent` due to its goal-directed movement logic.
+
 ### Future Prospects
+
+Future improvements could include:
+- Adding more agent types such as a wall-avoiding agent or a
+  pathfinding agent using algorithms like A* or Dijkstra
+- Adding a visual interface using a library like `pygame` instead of
+  printing to the console
+- Allowing the user to design their own grid world through the program
+  instead of editing the CSV file manually
+- Adding difficulty levels by generating random grid worlds of different
+  sizes and wall densities
 
 ---
 
