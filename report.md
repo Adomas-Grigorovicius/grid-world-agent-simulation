@@ -407,3 +407,4 @@ https://docs.python.org/3/library/unittest.html
 https://www.geeksforgeeks.org/python/factory-method-python-design-patterns/
 https://git-scm.com/docs/gittutorial
 https://www.geeksforgeeks.org/python/singleton-pattern-in-python-a-complete-guide/
+https://www.geeksforgeeks.org/data-science/manhattan-distance/
