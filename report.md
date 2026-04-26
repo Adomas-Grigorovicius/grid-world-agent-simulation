@@ -20,7 +20,6 @@ Factory design pattern and composition between the Grid and Cell classes.
 
 ### How to run the program?
 
-
 Make sure you have Python installed (version 3.8 or higher). To check, run:
 
 ```bash
@@ -102,11 +101,11 @@ I implemented Pythonic Getters and Setters using the @property decorator. This a
 
 ```python
 @property
-    def get_type(self):
+    def cell_type(self):
         return self.__cell_type
     
     @cell_type.setter
-    def set_type(self, cell_type):
+    def cell_type(self, cell_type):
         if cell_type not in self.VALID_TYPES:
             raise ValueError(f"Invalid cell type: {cell_type}")
         self.__cell_type = cell_type
@@ -166,11 +165,8 @@ which type of agent it is — the correct behaviour happens automatically.
 
 ### Design Pattern
 
-
 This project implements two design patterns: the **Singleton Pattern** in
 `FileManager` and the **Factory Pattern** in `main.py`.
-
----
 
 #### Singleton Pattern
 
@@ -202,8 +198,6 @@ The Singleton Pattern is suitable here because there should only ever be one
 central point responsible for reading and writing simulation results. Having
 multiple `FileManager` instances could cause conflicts when writing to the
 same file simultaneously.
-
----
 
 #### Factory Pattern
 
@@ -245,6 +239,8 @@ grid_row.append(cell)
 
 The entire grid world is built from individual `Cell` objects, each knowing
 their own position and type.
+
+---
 
 ### File I/O
 
@@ -297,6 +293,8 @@ Each row in `results.csv` contains the timestamp, agent type, and number
 of steps taken. For example:
 
 2026-04-25 15:48:17,random,56
+
+---
 
 ### Testing
 
@@ -403,6 +401,9 @@ Future improvements could include:
 
 ## 4. Resources
 
-https://www.geeksforgeeks.org
-https://www.w3schools.com
-https://docs.python.org/3/
+https://docs.python.org/3/library/csv.html
+https://docs.python.org/3/library/abc.html
+https://docs.python.org/3/library/unittest.html
+https://www.geeksforgeeks.org/python/factory-method-python-design-patterns/
+https://git-scm.com/docs/gittutorial
+https://www.geeksforgeeks.org/python/singleton-pattern-in-python-a-complete-guide/
