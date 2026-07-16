@@ -18,24 +18,6 @@ The project demonstrates core Object-Oriented Programming principles including
 encapsulation, abstraction, inheritance, and polymorphism, as well as the
 Factory design pattern and composition between the Grid and Cell classes.
 
-## Project structure
-
-```
-grid-world-agent-simulation/
-├── main.py                  # entry point / CLI
-├── simulation/
-│   ├── agent.py              # BaseAgent (ABC), RandomAgent, GreedyAgent
-│   ├── cell.py                # Cell
-│   ├── file_manager.py     # FileManager (Singleton)
-│   └── grid.py                 # Grid
-├── test/
-│   └── test_agent.py       # unit tests
-├── data/
-│   ├── world.csv              # 5x5 grid layout
-│   └── results.csv           # simulation history (generated/appended)
-└── report.md
-```
-
 ### How to run the program?
 
 Make sure you have Python installed (version 3.8 or higher). To check, run:
