@@ -4,7 +4,7 @@ class Cell:
     def __init__(self, x, y, cell_type):
         self.__x = x
         self.__y = y
-        self.__cell_type = cell_type 
+        self.cell_type = cell_type 
 
     @property
     def x(self):
