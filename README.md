@@ -143,7 +143,7 @@ of all major classes.
 To run the tests:
 
 ```bash
-python -m unittest test/test_agent.py
+python -m unittest tests.test_agent
 ```
 
 ---
@@ -154,10 +154,6 @@ python -m unittest test/test_agent.py
   where the start and goal aren't connected it would run indefinitely.
   The bundled `world.csv` is guaranteed solvable, so this doesn't surface
   in normal use.
-- `Cell`'s type validation lives in its property setter, but the
-  constructor currently assigns the private attribute directly rather
-  than going through the setter, so a malformed CSV entry isn't caught
-  at load time.
 - `GreedyAgent` uses a pure Manhattan-distance heuristic with no
   backtracking or visited-cell memory. It reaches the goal reliably on
   the bundled grid, but a purely greedy strategy like this isn't
