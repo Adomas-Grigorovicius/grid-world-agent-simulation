@@ -24,13 +24,13 @@ class Cell:
             raise ValueError(f"Invalid cell type: {value}")
         self.__cell_type = value
     
-    def is_walkable(self: bool):
+    def is_walkable(self) -> bool:
         return self.__cell_type != "W"
     
-    def is_goal(self: bool):
+    def is_goal(self) -> bool:
         return self.__cell_type == "G"
     
-    def __repr__(self: str):
+    def __repr__(self) -> str:
         return f"Cell({self.__x}, {self.__y}, '{self.__cell_type}')"
         
 
