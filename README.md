@@ -20,7 +20,7 @@ Factory design pattern and composition between the Grid and Cell classes.
 
 ### How to run the program?
 
-Make sure you have Python installed (version 3.8 or higher). To check, run:
+Make sure you have Python installed (version 3.10 or higher). To check, run:
 
 ```bash
 python --version
@@ -117,16 +117,6 @@ module built into Python is used throughout.
 The grid world is loaded from `data/world.csv` when the simulation starts.
 The `Grid` class reads the file row by row and converts each value into a
 `Cell` object.
-
-The `world.csv` file defines the layout of the grid world using these
-symbols:
-
-| Symbol | Meaning |
-|--------|---------|
-| S | Start position |
-| G | Goal position |
-| W | Wall |
-| E | Empty cell |
 
 #### Writing - Saving Results
 
