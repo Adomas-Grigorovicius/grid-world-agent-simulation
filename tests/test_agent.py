@@ -2,7 +2,7 @@ import unittest
 from simulation.grid import Grid
 from simulation.agent import RandomAgent, GreedyAgent
 from simulation.file_manager import FileManager
-
+from simulation.cell import Cell
 
 class TestCell(unittest.TestCase):
 
@@ -29,6 +29,10 @@ class TestCell(unittest.TestCase):
         cell = self.grid.get_cell(0, 0)
         with self.assertRaises(ValueError):
             cell.cell_type = "X"
+
+    def test_invalid_cell_type_on_construction(self):
+        with self.assertRaises(ValueError):
+            Cell(0, 0, "X")
 
 class TestGrid(unittest.TestCase):
 
@@ -90,10 +94,8 @@ class TestAgents(unittest.TestCase):
         self.assertTrue(self.greedy_agent.has_reached_goal())
 
 class TestFileManager(unittest.TestCase):
-    """Tests for the FileManager Singleton."""
 
     def test_singleton(self):
-        """Test that FileManager is a Singleton."""
         fm1 = FileManager()
         fm2 = FileManager()
         self.assertIs(fm1, fm2)
