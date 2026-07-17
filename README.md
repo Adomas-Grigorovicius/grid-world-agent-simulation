@@ -156,39 +156,6 @@ To run the tests:
 python -m unittest test/test_agent.py
 ```
 
-#### TestCell
-
-Tests for the `Cell` class verify that:
-- Cell types are loaded correctly from the CSV file
-- Empty cells are correctly identified as walkable
-- Wall cells are correctly identified as not walkable
-- The goal cell is correctly identified
-- Setting an invalid cell type raises a `ValueError`
-
-#### TestGrid
-
-Tests for the `Grid` class verify that:
-- The start and goal positions are loaded correctly
-- The grid dimensions are correct (5x5)
-- Valid moves are correctly identified
-- Moving into a wall is correctly rejected
-- Moving outside the grid boundaries is correctly rejected
-
-#### TestAgents
-
-Tests for `RandomAgent` and `GreedyAgent` verify that:
-- `RandomAgent` starts at the correct start position
-- `RandomAgent` starts with 0 steps
-- Both `RandomAgent` and `GreedyAgent` correctly increment steps after each move
-- `RandomAgent` has not reached the goal at the start
-- `GreedyAgent` reaches the goal on the provided `world.csv` grid within 100 steps
-
-#### TestFileManager
-
-Tests for the `FileManager` class verify that:
-- The Singleton pattern works correctly - two instances of `FileManager`
-are always the exact same object
-
 ---
 
 ## Known limitations
